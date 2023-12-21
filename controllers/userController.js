@@ -1,7 +1,7 @@
 const { User, Thought } = require("../models");
 
 module.exports = {
-  // Get users
+  // Get requestr for all users
   async getAllUsers(req, res) {
     try {
       const users = await User.find();
@@ -10,7 +10,7 @@ module.exports = {
       res.status(500).json(err);
     }
   },
-  // Get single user
+  // Get request for a  single user
   async getUserById(req, res) {
     try {
       const user = await User.findOne({ _id: req.params.userId })
@@ -32,7 +32,7 @@ module.exports = {
       res.status(500).json(err);
     }
   },
-  // Post user
+  // Post request for a user
   async createUser(req, res) {
     try {
       const user = await User.create(req.body);
@@ -41,7 +41,7 @@ module.exports = {
       res.status(500).json(err);
     }
   },
-  // Put user
+  // Put request for a user
   async updateUserById(req, res) {
     try {
       const user = await User.findOneAndUpdate(
@@ -60,14 +60,14 @@ module.exports = {
       res.status(500).json(err);
     }
   },
-  // Delete user
+  // Deletes a user
   async deleteUserById(req, res) {
     try {
       const user = await User.findOneAndDelete({ _id: req.params.userId });
       if (!user) {
         return res.status(404).json({ message: "No user found with this id!" });
       }
-      //BONUS remove a user's associated thoughts when deleted
+      // remove the user from any friends arrays
       await Thought.deleteMany({ _id: { $in: user.thoughts } });
       res.json({
         message: `Successfully deleted user '${user.username}' and associated thoughts!`,
@@ -76,7 +76,7 @@ module.exports = {
       res.status(500).json(err);
     }
   },
-  // Post friend
+  // Post request for a friend
   async addFriend(req, res) {
     try {
       const friendId = req.params.friendId;
@@ -109,7 +109,7 @@ module.exports = {
       res.status(500).json(err);
     }
   },
-  // Delete friend
+  // Deletes a friend
   async removeFriendById(req, res) {
     try {
       const friendId = req.params.friendId;

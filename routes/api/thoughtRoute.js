@@ -1,7 +1,7 @@
-// Importing the 'Router' module from the 'express' package
+//importing the router module from express
 const router = require("express").Router();
 
-// Importing controller functions from the 'thoughtController' module
+
 const {
   getAllThoughts,
   getThoughtById,
@@ -12,22 +12,27 @@ const {
   removeReactionById,
 } = require("../../controllers/thoughtController");
 
+
 // Routes for handling HTTP requests related to thoughts
 router.route("/").get(getAllThoughts).post(createThought);
 
-// Routes for handling HTTP requests related to a specific thought identified by 'thoughtId'
+
+// Routes for handling HTTP requests related to 'thoughtId' for a specific thought
 router;
+
+
 router
   .route("/:thoughtId")
   .get(getThoughtById)
   .put(updateThoughtById)
   .delete(deleteThoughtById);
 
-// Route for adding a reaction to a specific thought identified by 'thoughtId'
+// Route for adding a reaction to 'thoughtId'
 router.route("/:thoughtId/reactions").post(addReaction);
 
-// Route for removing a specific reaction from a specific thought identified by 'thoughtId' and 'reactionId'
+// Route for removing a specific reaction form a thought in 'thoughtId' and 'reactionId'
 router.route("/:thoughtId/reactions/:reactionId").delete(removeReactionById);
 
-// Exporting the configured router
+
+
 module.exports = router;

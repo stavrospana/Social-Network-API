@@ -1,7 +1,7 @@
 const router = require("express").Router();
 
-// all of these user related methods are imported from the user-controller
-// methods are defined in the user-controller and will use the /api/users/... path
+// import the methods from the user controller
+
 const {
   getAllUsers,
   getUserById,
@@ -12,11 +12,11 @@ const {
   removeFriendById,
 } = require("../../controllers/userController");
 
-// /api/users
+
 // get all users and create a user
 router.route("/").get(getAllUsers).post(createUser);
 
-// /api/users/:userId
+
 // get one user, update one user, and delete one user
 router
   .route("/:userId")
@@ -24,7 +24,7 @@ router
   .put(updateUserById)
   .delete(deleteUserById);
 
-// /api/users/:userId/friends/:friendId
+
 // add a friend and remove a friend
 router
   .route("/:userId/friends/:friendId")

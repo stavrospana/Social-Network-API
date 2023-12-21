@@ -74,16 +74,16 @@ const names = [
     return `${username}@example.com`;
   };
   
-  // Get a random item given an array
+  // Function to get a random item from an array
   const getRandom = (arr) => arr[Math.floor(Math.random() * arr.length)];
   
-  // Function to generate a random username from the name array
+  // Function to generate a random username that is in the array above
   const getRandomUsername = () =>
     `${getRandom(names).split(" ")[0].toLowerCase()}${Math.floor(
       Math.random() * 10000
     )}`;
   
-  // Function to generate a list of users
+  // Function that will generate a list of users
   const generateUser = () => {
     const users = [];
   
@@ -107,7 +107,7 @@ const names = [
   // Function to get a random reaction from the reactions array
   const getRandomReaction = () => getRandom(reactions);
   
-  // Function to generate a random date between January 1, 2020, and the current date
+  // Function to generate a random date
   const getRandomDate = () => {
     const start = new Date(2020, 0, 1);
     const end = new Date();
@@ -148,5 +148,5 @@ const names = [
     return thoughtData;
   };
   
-  // Exporting the functions for use in other files
+
   module.exports = { generateUser, generateThoughts };
